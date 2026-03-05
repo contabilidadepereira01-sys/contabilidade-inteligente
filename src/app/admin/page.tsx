@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { isAdminAuthenticated } from '@/lib/admin/auth';
-import { getAdminDashboardData } from '@/lib/admin/data';
+import { AuditoriaXml, DiagnosticoTributario, Lead, getAdminDashboardData } from '@/lib/admin/data';
 
 export default async function AdminPage() {
   const authenticated = await isAdminAuthenticated();
@@ -57,7 +57,7 @@ export default async function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {leads.map((lead) => (
+                  {leads.map((lead: Lead) => (
                     <tr key={lead.id} className="border-b border-slate-100">
                       <td className="px-2 py-2">{new Date(lead.created_at).toLocaleString('pt-BR')}</td>
                       <td className="px-2 py-2">{lead.nome}</td>
@@ -82,7 +82,7 @@ export default async function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {auditorias.map((auditoria) => (
+                  {auditorias.map((auditoria: AuditoriaXml) => (
                     <tr key={auditoria.id} className="border-b border-slate-100">
                       <td className="px-2 py-2">{new Date(auditoria.created_at).toLocaleString('pt-BR')}</td>
                       <td className="px-2 py-2">{auditoria.nome_arquivo}</td>
@@ -108,7 +108,7 @@ export default async function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {diagnosticos.map((item) => (
+                  {diagnosticos.map((item: DiagnosticoTributario) => (
                     <tr key={item.id} className="border-b border-slate-100">
                       <td className="px-2 py-2">{new Date(item.created_at).toLocaleString('pt-BR')}</td>
                       <td className="px-2 py-2">{item.faturamento}</td>
